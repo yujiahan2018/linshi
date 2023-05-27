@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <!-- 加载 db.properties 文件 -->
+    <properties resource="db.properties" />
+
+    <!-- 设置全局参数 -->
+    <settings>
+        <!-- 指定log4j输出日志 -->
+        <setting name="logImpl" value="LOG4J" />
+    </settings>
+
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC" />
+            <!-- 配置数据库连接信息 -->
+            <dataSource type="POOLED">
+                <property name="driver"
+                    value="${mysql.driver}" />
+                <property name="url"
+                    value="${mysql.url}" />
+                <property name="username" value="${mysql.username}" />
+                <property name="password" value="${mysql.password}" />
+            </dataSource>
+        </environment>
+    </environments>
+    <!-- 在配置文件（mybatis-config.xml）中注册SQL映射文件（EmployeeMapper.xml、DepartmentMapper.xml）-->
+    <mappers>
+        <package name="org.lanqiao.mapper" />
+    </mappers>
+</configuration>

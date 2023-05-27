@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.lanqiao.mapper.EmployeeMapper">
+    <!-- 根据员工编号查询员工信息 -->
+    <select id="queryEmployeeByNo" parameterType="int"
+            resultType="org.lanqiao.pojo.Employee">
+        select * from emp where eNo=#{eNo}
+    </select>
+
+    <!-- 新增一个员工的信息 -->
+    <insert id="insertEmployee" parameterType="org.lanqiao.pojo.Employee" useGeneratedKeys="true" keyProperty="eNo" keyColumn="eNo">
+        insert into emp(eNo,eName,job,mgr,hireDate,sal,comm,dNo) 
+        values(#{eNo},#{eName},#{job},#{mgr},#{hireDate},#{sal},#{comm},#{dNo})
+    </insert>
+
+    <!-- 根据员工编号，修改员工信息 -->
+    <update id="updateEmployeeByNo" parameterType="org.lanqiao.pojo.Employee">
+        update emp set eName=#{eName}, job=#{job}, mgr=#{mgr}, hireDate=#{hireDate}, 
+        sal=#{sal}, comm=#{comm}, dNo=#{dNo} where eNo=#{eNo}
+    </update>
+
+    <!-- 根据员工编号，删除一个员工的信息 -->
+    <delete id="deleteEmployeeByNo" parameterType="int">
+        delete from emp where eNo=#{eNo}
+    </delete>
+</mapper>
